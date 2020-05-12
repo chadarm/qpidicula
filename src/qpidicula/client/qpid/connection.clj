@@ -1,5 +1,6 @@
-(ns bunnicula.client.rabbitmq.connection
-  (:import (com.rabbitmq.client Connection ConnectionFactory)))
+(ns qpidicula.client.qpid.connection
+  (:import
+    (org.apache.qpid.jms JmsConnection JmsConnectionFactory)))
 
 (defn create
   "Create rabbit connection for given rmq url

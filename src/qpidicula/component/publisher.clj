@@ -1,4 +1,4 @@
-(ns bunnicula.component.publisher
+(ns qpidicula.component.publisher
   (:require
     [clojure.tools.logging :as log]
     [com.stuartsierra.component :as component]

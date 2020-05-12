@@ -3,7 +3,7 @@
   :url "https://github.com/nomnom-insights/nomnom.bunnicula"
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/tools.logging "0.6.0"]
-                 [com.rabbitmq/amqp-client "5.8.0"]
+                 [org.apache.qpid/qpid-jms-client "0.51.0"]
                  [com.stuartsierra/component "0.4.0"]
                  [cheshire "5.10.0"]]
   :deploy-repositories {"clojars" {:sign-releases false}}

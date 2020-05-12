@@ -1,4 +1,4 @@
-(ns bunnicula.component.monitoring
+(ns qpidicula.component.monitoring
   (:require [bunnicula.protocol :as protocol]
             [clojure.tools.logging :as log]))
 

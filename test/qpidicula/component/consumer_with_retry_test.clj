@@ -1,4 +1,4 @@
-(ns bunnicula.component.consumer-with-retry-test
+(ns qpidicula.component.consumer-with-retry-test
   (:require [clojure.test :refer :all]
             [bunnicula.component.consumer-with-retry :refer :all]
             [com.stuartsierra.component :as component]

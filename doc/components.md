@@ -56,7 +56,7 @@ or by map with `host`, `port`, `username` and `password` keys
 
 ### Usage
 ```clojure
-(require '[bunnicula.component.connection :as connection]
+(require '[qpidicula.component.connection :as connection]
          '[com.stuartsierra.component :as component])
 
 (def connection (connection/create {:username "rabbit"
@@ -107,9 +107,9 @@ Following options are supported for publishing
 
 ### Usage
 ```clojure
-(require '[bunnicula.component.connection :as connection]
-         '[bunnicula.component.publisher :as publisher]
-         '[bunnicula.protocol :as protocol]
+(require '[qpidicula.component.connection :as connection]
+         '[qpidicula.component.publisher :as publisher]
+         '[qpidicula.protocol :as protocol]
          '[com.stuartsierra.component :as component])
 
 (def connection (connection/create {:url "amqp://rabbit:password@127.0.0.1:5672"
@@ -145,8 +145,8 @@ It is initiated as empty map and any time you publish message,
 its value is added to `queues` atom
 
 ```clojure
-(require '[bunnicula.component.publisher.mock :as mock]
-         '[bunnicula.protocol :as protocol]
+(require '[qpidicula.component.publisher.mock :as mock]
+         '[qpidicula.protocol :as protocol]
          '[com.stuartsierra.component :as component])
 
 (def p (-> (mock/create) component/start))
@@ -263,9 +263,9 @@ handler-fn is required to return one of following values
 ### Usage
 
 ```clojure
-(require '[bunnicula.component.connection :as connection]
-         '[bunnicula.component.monitoring :as monitoring]
-         '[bunnicula.component.consumer-with-retry :as consumer]
+(require '[qpidicula.component.connection :as connection]
+         '[qpidicula.component.monitoring :as monitoring]
+         '[qpidicula.component.consumer-with-retry :as consumer]
          '[com.stuartsierra.component :as component])
 
 (defn import-conversation-handler
@@ -303,10 +303,10 @@ Monitoring component is a required dependency for the consumer component
 Bunnicula provides a basic [monitoring component](#base-monitoring-component-).
 If you require more advanced monitoring functionality you can also implement your own.
 
-The component needs to implement all methods from [Monitoring protocol](../src/bunnicula/protocol.clj)
+The component needs to implement all methods from [Monitoring protocol](../src/qpidicula/protocol.clj)
 and support [component lifecycle](https://github.com/stuartsierra/component#creating-components)
 
-You can also use [bunnicula.monitoring component](https://github.com/nomnom-insights/nomnom.bunnicula.monitoring),
+You can also use [qpidicula.monitoring component](https://github.com/nomnom-insights/nomnom.bunnicula.monitoring),
 which will track consumer metrics and send those to StatsD and report exceptions to Rollbar.
 
 ## Base monitoring component <a name="base-monitoring-component"></a>
@@ -320,10 +320,10 @@ It logs the result of consumer's `message-handler-fn` using `clojure.tools.loggi
 You can completely override metrics and error reporting backends and call their APIs directly:
 
 ```clojure
-(ns bunnicula.monitoring.custom
+(ns qpidicula.monitoring.custom
   (:require [com.stuartsierra.component :as component]
             [clojure.tools.logging :as log]
-            [bunnicula.protocol :as protocol]
+            [qpidicula.protocol :as protocol]
             [xyz.component.raygun :as raygun]
             [xyz.component.graphite :as graphite]))
 

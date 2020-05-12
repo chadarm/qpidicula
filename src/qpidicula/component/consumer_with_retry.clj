@@ -1,4 +1,4 @@
-(ns bunnicula.component.consumer-with-retry
+(ns qpidicula.component.consumer-with-retry
   (:require [bunnicula.utils :as utils]
             [bunnicula.protocol :as protocol]
             [bunnicula.client.rabbitmq.channel :as channel]
@@ -210,7 +210,7 @@
     (channel/declare-exchange ch {:options {:durable true
                                             :auto-delete false}
                                   :name queue-name-error
-                                  :type "topic" })
+                                  :type "topic"})
 
     (log/infof "declare requeue-exchange name=%s" exch-requeue)
     (channel/declare-exchange ch {:options {:durable false

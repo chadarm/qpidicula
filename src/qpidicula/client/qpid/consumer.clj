@@ -1,5 +1,6 @@
-(ns bunnicula.client.rabbitmq.consumer
-  (:import (com.rabbitmq.client BasicProperties Envelope Channel Consumer)))
+(ns qpidicula.client.rabbitmq.consumer
+  (:import
+    (com.rabbitmq.client BasicProperties Envelope Channel Consumer)))
 
 (defn- envelope-to-map
   [^Envelope envelope]

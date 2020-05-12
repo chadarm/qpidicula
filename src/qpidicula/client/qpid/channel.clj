@@ -1,5 +1,6 @@
-(ns bunnicula.client.rabbitmq.channel
-  (:import (com.rabbitmq.client Channel Connection AMQP$BasicProperties$Builder)))
+(ns qpidicula.client.rabbitmq.channel
+  (:import
+    (com.rabbitmq.client Channel Connection AMQP$BasicProperties$Builder)))
 
 (def default-routing-key "#")
 

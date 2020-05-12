@@ -1,4 +1,4 @@
-(ns bunnicula.component.connection-test
+(ns qpidicula.component.connection-test
   (:require [clojure.test :refer :all]
             [bunnicula.component.connection :refer :all]
             [com.stuartsierra.component :as component]))

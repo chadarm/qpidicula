@@ -1,4 +1,4 @@
-(ns bunnicula.utils-test
+(ns qpidicula.utils-test
   (:require [bunnicula.utils :refer :all]
             [clojure.test :refer :all]))
 

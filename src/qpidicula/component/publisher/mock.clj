@@ -1,4 +1,4 @@
-(ns bunnicula.component.publisher.mock
+(ns qpidicula.component.publisher.mock
   (:require
     [com.stuartsierra.component :as component]
     [bunnicula.protocol :as protocol]))

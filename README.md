@@ -1,13 +1,15 @@
-# bunnicula
+# qpidicula
 
 <img src="http://www.gstatic.com/tv/thumb/tvbanners/12567255/p12567255_b_v8_aa.jpg" align="right"  height="200px" />
 
-A Clojure RabbitMQ client.
+A clone of bunnicula, made for AMQP 1.0 in clojure.
 
 [![CircleCI](https://circleci.com/gh/nomnom-insights/nomnom.bunnicula.svg?style=svg)](https://circleci.com/gh/nomnom-insights/nomnom.bunnicula)
 
 
 ## Usage
+
+NOT AVAILABLE YET
 
 **Leiningen** (via [Clojars](https://clojars.org/nomnom/bunnicula))
 
@@ -28,4 +30,4 @@ See [here](doc/components.md)
 
 ### v2.0.2 (15.9.2018)
 
-- Open source nomnom/bunnicula library
+- Open source nomnom/qpidicula library

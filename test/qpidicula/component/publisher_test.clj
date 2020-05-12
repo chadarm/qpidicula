@@ -1,4 +1,4 @@
-(ns bunnicula.component.publisher-test
+(ns qpidicula.component.publisher-test
   (:require [clojure.test :refer :all]
             [bunnicula.component.publisher :refer :all]
             [com.stuartsierra.component :as component]

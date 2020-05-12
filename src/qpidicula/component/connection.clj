@@ -1,4 +1,4 @@
-(ns bunnicula.component.connection
+(ns qpidicula.component.connection
   "Component holds open connection to RMQ"
   (:require [bunnicula.client.rabbitmq.connection :as connection]
             [com.stuartsierra.component :as component]

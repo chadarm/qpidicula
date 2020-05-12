@@ -1,4 +1,4 @@
-(ns bunnicula.protocol)
+(ns qpidicula.protocol)
 
 (defprotocol Monitoring
   (with-tracking [this args]

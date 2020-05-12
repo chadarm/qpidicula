@@ -1,4 +1,4 @@
-(ns bunnicula.utils
+(ns qpidicula.utils
   (:require [cheshire.core :as json])
   (:import (java.util.concurrent TimeoutException TimeUnit)))
 
