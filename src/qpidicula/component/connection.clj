@@ -1,9 +1,10 @@
 (ns qpidicula.component.connection
   "Component holds open connection to AMQP Broker"
-  (:require [qpidicula.client.qpid.connection :as connection]
-            [com.stuartsierra.component :as component]
-            [clojure.tools.logging :as log]
-            [clojure.string :as string])
+  (:require
+    [qpidicula.client.qpid.connection :as connection]
+    [com.stuartsierra.component :as component]
+    [clojure.tools.logging :as log]
+    [clojure.string :as string])
   (:import (java.net URI)))
 
 (defn- connection-url
@@ -11,20 +12,17 @@
   (format "amqp://%s:%s@%s:%s"
           username password host port))
 
-(defrecord Connection [host port username password vhost connection-name  connection]
+;; @TODO - taken out url parameters and making it all be passed as a url right now
+(defrecord Connection [url connection-name  connection]
   component/Lifecycle
   (start [this]
     (if connection
       this
-      (let [url (connection-url {:host host
-                                 :port port
-                                 :username username
-                                 :password password})
-            conn (connection/create url connection-name)]
-        (log/infof "qpid-connection start name=%s vhost=%s" connection-name vhost)
+      (let [conn (connection/create url connection-name)]
+        (log/infof "amqp-connection start name=%s" connection-name)
         (assoc this :connection conn))))
   (stop [this]
-    (log/infof "qpid-connection stop name=%s" connection-name)
+    (log/infof "amqp-connection stop name=%s" connection-name)
     (when connection
       (connection/close connection))
     (assoc this :connection nil)))
@@ -32,22 +30,25 @@
 (defn extract-server-config
   "If there is not a host or port but there is a url,  pull the host and port out of url"
   [{:keys [url host port username password connection-name]}]
-  {:post [#(string? (:host %))
-          #(string? (:port %))
-          #(string? (:username %))
-          #(string? (:password %))]}
-  (if-let [^java.net.URI uri (and url (java.net.URI. url))]
-    (let [[username password] (string/split (.getUserInfo uri) #":")]
-      {:host (.getHost uri)
-       :port (.getPort uri)
-       :username username
-       :password password
-       :connection-name (or connection-name username)})
-    {:host host
-     :port port
-     :username username
-     :password password
-     :connection-name (or connection-name username)}))
+  (if-not (and (some? username) (some? password))
+    {:url url
+     :connection-name connection-name}
+    ({:post [#(string? (:host %))
+             #(string? (:port %))
+             #(string? (:username %))
+             #(string? (:password %))]}
+     (if-let [^java.net.URI uri (and url (java.net.URI. url))]
+       (let [[username password] (string/split (.getUserInfo uri) #":")]
+         {:host (.getHost uri)
+          :port (.getPort uri)
+          :username username
+          :password password
+          :connection-name (or connection-name username)})
+       {:host host
+        :port port
+        :username username
+        :password password
+        :connection-name (or connection-name username)}))))
 
 (defn create
   "Create AMQP broker connection for given connection config.
