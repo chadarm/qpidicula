@@ -1,5 +1,5 @@
 (ns qpidicula.component.monitoring
-  (:require [bunnicula.protocol :as protocol]
+  (:require [qpidicula.protocol :as protocol]
             [clojure.tools.logging :as log]))
 
 (defn- trim-message

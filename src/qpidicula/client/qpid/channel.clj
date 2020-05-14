@@ -1,6 +1,19 @@
-(ns qpidicula.client.rabbitmq.channel
+(ns qpidicula.client.qpid.channel
   (:import
     (com.rabbitmq.client Channel Connection AMQP$BasicProperties$Builder)))
+
+
+
+
+;;; This needs to be wiped out eventually
+; keeping it around to remember functionality of other components
+
+
+
+
+
+
+
 
 (def default-routing-key "#")
 

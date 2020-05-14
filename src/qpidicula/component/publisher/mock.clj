@@ -1,7 +1,7 @@
 (ns qpidicula.component.publisher.mock
   (:require
     [com.stuartsierra.component :as component]
-    [bunnicula.protocol :as protocol]))
+    [qpidicula.protocol :as protocol]))
 
 (defrecord Mock [queues]
   component/Lifecycle

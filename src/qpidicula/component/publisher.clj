@@ -2,9 +2,9 @@
   (:require
     [clojure.tools.logging :as log]
     [com.stuartsierra.component :as component]
-    [bunnicula.client.rabbitmq.channel :as channel]
-    [bunnicula.protocol :as protocol]
-    [bunnicula.utils :as utils]))
+    [qpidicula.client.qpid.channel :as channel]
+    [qpidicula.protocol :as protocol]
+    [qpidicula.utils :as utils]))
 
 (defrecord Publisher [rmq-connection channel serializer exchange-name]
   component/Lifecycle
@@ -43,11 +43,10 @@
                                                :name name})))))
 
 (defn create
-  "Create publisher using serializer fn to convert clojure structure to RMQ message.
-   RabbitMQ connection can be passed as argument or injected as dependency!
+  "Create publisher using serializer fn to convert clojure structure to AMQP message.
+   Connection can be passed as argument or injected as dependency!
    Configurable values
-   - serializer: by default json-serializer is used
-   - exchange-name: by default '' is used (default rabbit exchange)"
+   - serializer: by default json-serializer is used"
   [config]
   ;; rmq-connection is required to be injected as dependency
   (map->Publisher

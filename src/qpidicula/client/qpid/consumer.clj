@@ -1,6 +1,46 @@
-(ns qpidicula.client.rabbitmq.consumer
+(ns qpidicula.client.qpid.consumer
   (:import
-    (com.rabbitmq.client BasicProperties Envelope Channel Consumer)))
+    (com.rabbitmq.client BasicProperties Envelope Channel Consumer)
+    (org.apache.qpid.jms JmsConsumer JmsSession MessageConsumer)
+    (javax.jms MessageConsumer)))
+
+
+;; JmsConsumer is built around using JmsContext, which we aren't doing currently
+
+(defn receive
+  ([^MessageConsumer consumer]
+   (.receiveNoWait consumer))
+  ([^JmsConsumer consumer typ]
+   (.receiveBodyNoWait consumer typ)))
+
+
+
+(defn create
+  "Creates a MessageConsumer for the specified destination, using a message selector.
+   Since Queue and Topic both inherit from Destination, they can be used in the
+   destination parameter to create a MessageConsumer.
+   A client uses a MessageConsumer object to receive messages that have been sent to a destination.
+
+   Parameters:
+   - session - session that this consumer is created under
+   - destination - the Destination to access
+   - messageSelector - only messages with properties matching the message selector expression are
+                       delivered. A value of null\nor an empty string indicates that there is no
+                       message selector for the message consumer.
+   - no-local - if true, and the destination is a topic, then the MessageConsumer
+               will not receive messages published to the topic by its own connection."
+  ([^JmsSession session destination]
+   (create session destination ""))
+  ([^JmsSession session destination message-selector]
+   (.createConsumer session destination message-selector))
+  ([^JmsSession session destination message-selector no-local]
+   (.createConsumer session destination message-selector no-local)))
+
+
+
+
+
+
 
 (defn- envelope-to-map
   [^Envelope envelope]

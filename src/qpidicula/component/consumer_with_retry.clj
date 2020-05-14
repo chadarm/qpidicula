@@ -1,8 +1,8 @@
 (ns qpidicula.component.consumer-with-retry
-  (:require [bunnicula.utils :as utils]
-            [bunnicula.protocol :as protocol]
-            [bunnicula.client.rabbitmq.channel :as channel]
-            [bunnicula.client.rabbitmq.consumer :as consumer]
+  (:require [qpidicula.utils :as utils]
+            [qpidicula.protocol :as protocol]
+            [qpidicula.client.qpid.channel :as channel]
+            [qpidicula.client.qpid.consumer :as consumer]
             [clojure.tools.logging :as log]
             [com.stuartsierra.component :as component]))
 
